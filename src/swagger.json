@@ -1,0 +1,143 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Coworkers API",
+    "description": "13|37's assignment for considering candidates for hiring;",
+    "contact": {
+      "name": "Anatoliy Avramenko",
+      "url": "https://github.com/anatoliy-avramenko",
+      "email": "anatoly.avramenko@gmail.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "/api/",
+      "description": "localhost"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Coworkers",
+      "description": "API for coworkers"
+    },
+    {
+      "name": "Coworker",
+      "description": "API for a single coworker"
+    }
+  ],
+  "paths": {
+    "/coworkers/": {
+      "parameters": [
+        {
+          "in": "query",
+          "name": "filter",
+          "required": false,
+          "description": "Filter string or regular expression.",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "get": {
+        "tags": [
+          "Coworkers"
+        ],
+        "summary": "Get all coworkers",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/coworker/": {
+      "post": {
+        "tags": [
+          "Coworker"
+        ],
+        "summary": "Update coworker's data",
+        "requestBody": {
+          "description": "Coworker Object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "city": {
+                    "type": "string"
+                  },
+                  "text": {
+                    "type": "string"
+                  },
+                  "id": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "CREATED"
+          },
+          "400": {
+            "description": "Failed. Bad post data."
+          },
+          "500": {
+            "description": "Failed. Server Error."
+          }
+        }
+      }
+    },
+    "/coworker/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "ID of the coworker",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "get": {
+        "tags": [
+          "Coworker"
+        ],
+        "summary": "Get coworker with given ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of the coworker",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Failed. Coworker not found."
+          },
+          "500": {
+            "description": "Failed. Server Error."
+          }
+        }
+      }
+    }
+  }
+}
