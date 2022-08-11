@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "start": "nodemon",
-    "lint": "tslint --project \"tsconfig.json\"",
-    "test": "jest --testTimeout=10000",
-    "generate-docs": "typedoc --tsconfig ./tsconfig.json"
+    "lint": "tslint --project \"tsconfig.json\""
   },
   "nodemonConfig": {
     "watch": [

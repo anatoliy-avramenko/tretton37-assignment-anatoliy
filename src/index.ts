@@ -12,10 +12,6 @@ const fileName = process.env.STORGE_FILE_NAME || 'coworkers-data.json';
 // 15 retries looks unreasonable, but sometimes it takes up to 12 attempts until success
 const retryAttempts = 15;
 
-interface contentItem {
-  name: string;
-  portraitUrl: string;
-}
 
 const baseUrlToScrap = 'https://tretton37.com';
 const meetPath = '/meet';
@@ -47,6 +43,7 @@ try {
       let isError = false;
       while (attemptsLeft) {
         try {
+          attemptsLeft--;
           coworkerResponse = await axios(detailsPathFull);
           isError = false;
           break;
